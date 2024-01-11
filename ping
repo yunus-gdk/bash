@@ -1,0 +1,17 @@
+#!/bin/bash
+red='\033[0;31m'
+green='\033[0;32m'
+
+LIST_IP=`cat list_ip.txt`
+for ip in $LIST_IP
+do
+ping -c 2 $ip >>result.log
+if [[ $? -eq 0 ]]
+then
+echo -e "$green $ip ping"
+echo "$ip 'PINGS'">>pingresults.log
+else
+echo -e "$red $ip doesnt ping"
+echo "$ip 'DOESNT PING'">>pingresults.log
+fi
+done
